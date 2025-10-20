@@ -1,0 +1,72 @@
+/*
+ * LedAnimationTask.c
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+#include "LedAnimationTask.h"
+
+void LedTAnimationTask(void * pargs){
+
+	while(1){
+		uint8_t nButtom = readJoy();
+		switch (nButtom){
+		case 0:
+			  LED_Off(0);
+			  		 LED_Off(1);
+			  		 LED_Off(2);
+			  		 break;
+			  	 case 1:
+			  		  animation1();
+			  		break;
+			  	 case 2:
+			  		 animation2();
+			  		break;
+			  	 case 3:
+			  		 animation3();
+			  		break;
+		}
+	}
+}
+
+void CreateLedAnimationTask(){
+	xTaskCreate(LedTAnimationTask, "LedTAnimationTask", 128, NULL, 1, NULL);
+}
+
+void animation1(){
+	int i;
+	LED_Off(0);
+	for(i =0; i<10;i++){
+		LED_Toggle(0);
+		vTaskDelay(200);
+		LED_Toggle(1);
+		vTaskDelay(200);
+	}
+	LED_Off(0);
+	LED_Off(1);
+}
+
+void animation2(){
+	int i;
+	LED_Off(0);
+	for(i =0; i<10;i++){
+		LED_Toggle(2);
+		vTaskDelay(200);
+		LED_Toggle(3);
+		vTaskDelay(200);
+	}
+	LED_Off(2);
+	LED_Off(3);
+}
+void animation3(){
+	int i;
+	LED_Off(0);
+	for(i =0; i<10;i++){
+		LED_Toggle(3);
+		vTaskDelay(200);
+		LED_Toggle(1);
+		vTaskDelay(200);
+	}
+	LED_Off(3);
+	LED_Off(1);
+}

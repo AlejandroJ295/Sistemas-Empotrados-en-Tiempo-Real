@@ -1,0 +1,87 @@
+/*
+ * LedTask.c
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+#include "LedTask.h"
+
+TaskHandle_t xTaskToNotify ;
+
+void LedToggleTask(void * pargs){
+
+	uint8_t nLed = (uint8_t) pargs;
+
+	while(1){
+		/*
+		switch(nLed){
+		case 1:
+			LED_Toggle(nLed);
+			vTaskDelay(200);
+			break;
+		case 2:
+			LED_Toggle(nLed);
+			vTaskDelay(300);
+			break;
+		}
+		*/
+		/*
+		switch(nLed){
+		case 1:
+			for(int i = 0; i < 5; i++){
+				LED_Toggle(nLed);
+				vTaskDelay(200);
+			}
+			xTaskCreate(LedToggleTask, "LedToggleTask", 128, 2, 1, NULL);
+			vTaskDelete(NULL);
+			break;
+		case 2:
+			for(int i = 0; i < 5; i++){
+				LED_Toggle(nLed);
+				vTaskDelay(200);
+			}
+			xTaskCreate(LedToggleTask, "LedToggleTask", 128, 1, 1, NULL);
+			vTaskDelete(NULL);
+			break;
+		}
+		*/
+
+	}
+}
+
+void ButtonTask (void * pargs){
+	while(1){
+		uint8_t boton = readJoy();
+		if(boton != 0){
+			xTaskNotifyGive(xTaskToNotify );
+			vTaskDelay(10);
+
+		}
+	}
+}
+
+void ledTask(void * pargs){
+	while(1){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		animation1();
+	}
+}
+
+void CreateLedTask(){
+	//xTaskCreate(LedToggleTask, "LedToggleTask", 128, 1, 1, NULL);
+	//xTaskCreate(LedToggleTask, "LedToggleTask", 128, 2, 1, NULL);
+	xTaskCreate(ButtonTask, "ButtonTask", 128, 1, 1, pxCreatedTask);
+}
+
+void animation1(){
+	int i;
+	LED_Off(0);
+	for(i =0; i<10;i++){
+		LED_Toggle(0);
+		vTaskDelay(200);
+		LED_Toggle(1);
+		vTaskDelay(200);
+	}
+	LED_Off(0);
+	LED_Off(1);
+}

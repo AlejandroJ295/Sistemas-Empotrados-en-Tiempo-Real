@@ -1,0 +1,22 @@
+/*
+ * LedTask.c
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+#include "LedTask.h"
+
+void LedToggleTask(void * pargs){
+
+	uint8_t nLed = (uint8_t) pargs;
+
+	while(1){
+		LED_Toggle(nLed);
+		vTaskDelay(200);
+	}
+}
+
+void CreateLedTask(){
+	xTaskCreate(LedToggleTask, "LedToggleTask", 128, NULL, 1, NULL);
+}
+

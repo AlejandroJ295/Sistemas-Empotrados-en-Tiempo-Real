@@ -1,0 +1,20 @@
+/*
+ * LedAnimationTask.c
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+
+void LedToggleTask(void * pargs){
+
+	uint8_t nButtom = (uint8_t) pargs;
+
+	while(1){
+		switch (n)
+	}
+}
+
+void CreateLedTask(){
+	xTaskCreate(LedToggleTask, "LedToggleTask", 128, 1, 1, NULL);
+	//xTaskCreate(LedToggleTask, "LedToggleTask", 128, 2, 1, NULL);
+}

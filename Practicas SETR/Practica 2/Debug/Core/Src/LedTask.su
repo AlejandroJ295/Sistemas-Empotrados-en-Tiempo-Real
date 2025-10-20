@@ -1,0 +1,2 @@
+../Core/Src/LedTask.c:9:6:LedToggleTask	24	static
+../Core/Src/LedTask.c:52:6:CreateLedTask	16	static

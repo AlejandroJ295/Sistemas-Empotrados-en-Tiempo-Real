@@ -1,0 +1,25 @@
+/*
+ * LedAnimationTask.h
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+
+#ifndef INC_LEDANIMATIONTASK_H_
+#define INC_LEDANIMATIONTASK_H_
+
+#include "stm32l4xx_hal.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+
+#include "led_driver.h"
+#include "joy_driver.h"
+
+void LedTAnimationTask(void * pargs);
+void CreateLedAnimationTask();
+void animation1();
+void animation2();
+void animation3();
+
+#endif /* INC_LEDANIMATIONTASK_H_ */

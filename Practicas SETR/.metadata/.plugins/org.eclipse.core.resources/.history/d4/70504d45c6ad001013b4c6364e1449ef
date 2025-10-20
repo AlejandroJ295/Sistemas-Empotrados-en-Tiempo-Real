@@ -1,0 +1,141 @@
+/*
+ * LedTask.c
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+#include "LedTask.h"
+
+TaskHandle_t xTaskToNotify[2];
+xSemaphoreHandle miSem;
+miSem=xSemaphoreCreateBinary();
+//TaskHandle_t xTaskToNotify ;
+
+void LedToggleTask(void * pargs){
+
+	uint8_t nLed = (uint8_t) pargs;
+
+	while(1){
+		/*
+		switch(nLed){
+		case 1:
+			LED_Toggle(nLed);xSemaphoreHandle miSem;
+			vTaskDelay(200);
+			break;
+		case 2:
+			LED_Toggle(nLed);
+			vTaskDelay(300);
+			break;
+		}
+		*/
+		/*
+		switch(nLed){
+		case 1:
+			for(int i = 0; i < 5; i++){
+				LED_Toggle(nLed);
+				vTaskDelay(200);
+			}
+			xTaskCreate(LedToggleTask, "LedToggleTask", 128, 2, 1, NULL);
+			vTaskDelete(NULL);
+			break;
+		case 2:
+			for(int i = 0; i < 5; i++){
+				LED_Toggle(nLed);
+				vTaskDelay(200);
+			}
+			xTaskCreate(LedToggleTask, "LedToggleTask", 128, 1, 1, NULL);
+			vTaskDelete(NULL);
+			break;
+		}
+		*/
+
+	}
+}
+/*
+void ButtonTask (void * pargs){
+	while(1){
+		uint8_t boton = readJoy();
+		if(boton != 0){
+			switch(boton){
+			case 1:
+				xTaskNotifyGive(xTaskToNotify[0]);
+				vTaskDelay(10);
+				break;
+			case 2:
+				xTaskNotifyGive(xTaskToNotify[1]);
+				vTaskDelay(10);
+				break;
+			}
+
+
+		}
+	}
+}
+
+*/
+void ButtonTaskSemaphore (void * pargs){
+	while(1){
+		uint8_t boton = readJoy();
+		if(boton != 0){
+				xTaskNotifyGive(xTaskToNotify[0]);
+				vTaskDelay(10);
+
+		}
+	}
+}
+void ledTaskSemaphore(void * pargs){
+	while(1){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		animation1();
+	}
+}
+void CreateLedTask(){
+	//xTaskCreate(LedToggleTask, "LedToggleTask", 128, 1, 1, NULL);
+	//xTaskCreate(LedToggleTask, "LedToggleTask", 128, 2, 1, NULL);
+	xTaskCreate(ButtonTask, "ButtonTask", 128, NULL, 1, NULL);
+	//xTaskCreate(ledTask, "ledTask", 128, 2, 1, &xTaskToNotify);
+	xTaskCreate(ledTask, "ledTask", 128, 2, 1, &xTaskToNotify[0]);
+	xTaskCreate(ledTask2, "ledTask2", 128, 2, 1, &xTaskToNotify[1]);
+
+}
+
+void animation1(){
+	int i;
+	LED_Off(0);
+	for(i =0; i<10;i++){
+		LED_Toggle(0);
+		vTaskDelay(200);
+		LED_Toggle(1);
+		vTaskDelay(200);
+	}
+	LED_Off(0);
+	LED_Off(1);
+}
+
+void animation2(){
+	int i;
+	LED_Off(0);
+	for(i =0; i<10;i++){
+		LED_Toggle(2);
+		vTaskDelay(200);
+		LED_Toggle(3);
+		vTaskDelay(200);
+	}
+	LED_Off(2);
+	LED_Off(3);
+}
+/*
+void ledTask(void * pargs){
+	while(1){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		animation1();
+	}
+}
+
+void ledTask2(void * pargs){
+	while(1){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		animation2();
+	}
+}
+*/

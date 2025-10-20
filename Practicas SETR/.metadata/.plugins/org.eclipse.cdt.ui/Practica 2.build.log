@@ -1,0 +1,59 @@
+17:29:14 **** Incremental Build of configuration Debug for project Practica 2 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/LedTask.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/LedTask.d" -MT"Core/Src/LedTask.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/LedTask.o"
+In file included from ../Core/Inc/LedTask.h:19,
+                 from ../Core/Src/LedTask.c:7:
+../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:941:34: error: unknown type name 'SemaphoreHandle_t'; did you mean 'xSemaphoreHandle'?
+  941 |         #define xSemaphoreHandle SemaphoreHandle_t
+      |                                  ^~~~~~~~~~~~~~~~~
+../Core/Src/LedTask.c:10:1: note: in expansion of macro 'xSemaphoreHandle'
+   10 | xSemaphoreHandle miSem;
+      | ^~~~~~~~~~~~~~~~
+../Core/Src/LedTask.c:11:1: warning: data definition has no type or storage class
+   11 | miSem=xSemaphoreCreateBinary();
+      | ^~~~~
+../Core/Src/LedTask.c:11:1: warning: type defaults to 'int' in declaration of 'miSem' [-Wimplicit-int]
+../Core/Src/LedTask.c:11:7: warning: implicit declaration of function 'xSemaphoreCreateBinary' [-Wimplicit-function-declaration]
+   11 | miSem=xSemaphoreCreateBinary();
+      |       ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/LedTask.c:11:7: error: initializer element is not constant
+../Core/Src/LedTask.c: In function 'LedToggleTask':
+../Core/Src/LedTask.c:16:24: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+   16 |         uint8_t nLed = (uint8_t) pargs;
+      |                        ^
+../Core/Src/LedTask.c:16:17: warning: unused variable 'nLed' [-Wunused-variable]
+   16 |         uint8_t nLed = (uint8_t) pargs;
+      |                 ^~~~
+../Core/Src/LedTask.c: In function 'ButtonTaskSemaphore':
+../Core/Src/LedTask.c:82:33: warning: implicit declaration of function 'xSemaphoreGive'; did you mean 'xSemaphoreHandle'? [-Wimplicit-function-declaration]
+   82 |                                 xSemaphoreGive (miSem);
+      |                                 ^~~~~~~~~~~~~~
+      |                                 xSemaphoreHandle
+../Core/Src/LedTask.c: In function 'ledTaskSemaphore':
+../Core/Src/LedTask.c:90:17: warning: implicit declaration of function 'xSemaphoreTake'; did you mean 'xSemaphoreHandle'? [-Wimplicit-function-declaration]
+   90 |                 xSemaphoreTake(pdTRUE, portMAX_DELAY);
+      |                 ^~~~~~~~~~~~~~
+      |                 xSemaphoreHandle
+../Core/Src/LedTask.c: In function 'CreateLedTask':
+../Core/Src/LedTask.c:102:64: warning: passing argument 4 of 'xTaskCreate' makes pointer from integer without a cast [-Wint-conversion]
+  102 |         xTaskCreate(ledTaskSemaphore, "ledTaskSemaphore", 128, 2, 1, NULL);
+      |                                                                ^
+      |                                                                |
+      |                                                                int
+In file included from ../Core/Inc/LedTask.h:20:
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:333:70: note: expected 'void * const' but argument is of type 'int'
+  333 |                                                         void * const pvParameters,
+      |                                                         ~~~~~~~~~~~~~^~~~~~~~~~~~
+../Core/Src/LedTask.c:103:70: warning: passing argument 4 of 'xTaskCreate' makes pointer from integer without a cast [-Wint-conversion]
+  103 |         xTaskCreate(ButtonTaskSemaphore, "ButtonTaskSemaphore", 128, 2, 1, NULL);
+      |                                                                      ^
+      |                                                                      |
+      |                                                                      int
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:333:70: note: expected 'void * const' but argument is of type 'int'
+  333 |                                                         void * const pvParameters,
+      |                                                         ~~~~~~~~~~~~~^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:52: Core/Src/LedTask.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+17:29:14 Build Failed. 3 errors, 9 warnings. (took 340ms)
+

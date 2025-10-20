@@ -1,0 +1,13 @@
+/*
+ * LedTask.h
+ *
+ *  Created on: Oct 6, 2025
+ *      Author: pinkyflowy
+ */
+
+#ifndef INC_LEDTASK_H_
+#define INC_LEDTASK_H_
+
+void CreateLedTask();
+
+#endif /* INC_LEDTASK_H_ */

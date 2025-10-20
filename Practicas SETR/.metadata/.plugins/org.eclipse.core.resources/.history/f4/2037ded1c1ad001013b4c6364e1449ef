@@ -1,0 +1,21 @@
+#include "joy_driver.h"
+uint8_t estado_actual=1;
+uint8_t estado_anterior=1;
+uint8_t estado=0;
+
+uint8_t readJoy(){
+	estado_actual = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+	if(estado_actual == 0 && estado_anterior==1){
+		if(estado == 4){
+			estado = 1;
+		}else{
+			estado++;
+		}
+		estado_anterior = estado_actual;
+		return estado;
+	}else{
+		estado = 0;
+	}
+	estado_anterior = 1;
+	return 0;
+}

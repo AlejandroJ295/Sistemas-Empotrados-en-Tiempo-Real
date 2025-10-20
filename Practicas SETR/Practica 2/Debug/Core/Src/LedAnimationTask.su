@@ -1,0 +1,5 @@
+../Core/Src/LedAnimationTask.c:9:6:LedTAnimationTask	24	static
+../Core/Src/LedAnimationTask.c:32:6:CreateLedAnimationTask	16	static
+../Core/Src/LedAnimationTask.c:36:6:animation1	16	static
+../Core/Src/LedAnimationTask.c:49:6:animation2	16	static
+../Core/Src/LedAnimationTask.c:61:6:animation3	16	static
