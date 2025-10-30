@@ -1,0 +1,60 @@
+/*
+ * sensors.c
+ *
+ *  Created on: Oct 27, 2025
+ *      Author: pinkyflowy
+ *
+ *      void Temperature_Test(void);
+		void Humidity_Test(void);
+		void Pressure_Test(void);
+		void Gyro_Test(void);
+		void Magneto_Test(void);
+		void Accelero_Test(void);
+ */
+
+
+
+#include "main.h"
+
+void Sensors_Init(){
+	Pressure_Test();
+	Humidity_Test();
+	Temperature_Test();
+
+}
+
+void Pressure_Test(void){
+	float press_value =0;
+
+	BSP_PSENSOR_Init();
+	while(1){
+		HAL_Delay(5000);
+		press_value =BSP_PSENSOR_ReadPressure();
+		printf("PRESSURE is= %.2f mBar \n", press_value);
+	}
+}
+
+void Humidity_Test(void){
+	float humidity_value =0;
+
+	BSP_HSENSOR_Init();
+	while(1){
+		humidity_value =BSP_HSENSOR_ReadHumidity();
+		printf("HUMIDITY is= %.2f mBar \n", humidity_value);
+		HAL_Delay(1000);
+	}
+}
+
+void Temperature_Test(void){
+	float temperature_value =0;
+
+	BSP_TSENSOR_Init();
+	while(1){
+		temperature_value =BSP_TSENSOR_ReadTemp();
+		printf("TEMPERATURE is= %.2f mBar \n", temperature_value);
+	}
+}
+
+
+
+
