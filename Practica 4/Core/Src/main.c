@@ -62,14 +62,7 @@ const osThreadAttr_t defaultTask_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
-int __io_putchar(int ch)
-{
-  while (HAL_OK != HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 30000))
-  {
-	  ;
-  }
-  return ch;
-}
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -117,8 +110,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  CreateSerialObjects();
-  CreateSerialTask();
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -155,9 +147,11 @@ int main(void)
 
   /* Create the thread(s) */
   /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  //defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
+  CreateSerialObjects();
+  CreateSerialTask();
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 

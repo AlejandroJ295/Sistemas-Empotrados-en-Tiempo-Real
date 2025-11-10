@@ -7,38 +7,74 @@
 
 #include "main.h"
 
+char c;
 SemaphoreHandle_t xSemaphore;
 QueueHandle_t xQueue;
 extern UART_HandleTypeDef huart1;
+int __io_putchar(int ch)
+{
+  SerialSendByte(ch);
+  return ch;
+}
+
 void CreateSerialObjects()
 {
 	//Crear un semaforo.
 	xSemaphore = xSemaphoreCreateBinary();
 	xSemaphoreGive(xSemaphore);
+	xQueue = xQueueCreate(16, sizeof(char));
 }
 
 
 void CreateSerialTask()
 {
-	xTaskCreate(SerialTaskTx, "SerialTaskTx", NULL, 128, 1, NULL);
+	xTaskCreate(SerialTaskTx, "SerialTaskTx", 128,NULL , 1, NULL);
+	xTaskCreate(SerialTaskRx, "SerialTaskRx", 128, NULL , 1, NULL);
 }
 
 void SerialTaskTx(void* pArgs){
 	for(;;){
 
-		SerialSendByte("h");
-		vTaskDelay(100);
-		SerialSendByte("o");
-		vTaskDelay(100);
-		SerialSendByte("l");
-		vTaskDelay(100);
-		SerialSendByte("a");
-		vTaskDelay(100);
+		SerialSendByte('h');
+		SerialSendByte('o');
+		SerialSendByte('l');
+		SerialSendByte('a');
+		SerialSendByte('\r');
+		SerialSendByte('\n');
+
+
+		//printf("HOLA");
+		vTaskDelay(300);
 	}
 }
 
+
+void SerialTaskRx(void* pArgs){
+	HAL_UART_Receive_IT(&huart1, &c, 1);
+
+	char data;
+	for(;;){
+		xQueueReceive(xQueue, &data, portMAX_DELAY);
+		//printf("Mensaje recibido de la cola %d\r|n",data);
+		SerialSendByte('>');
+
+		SerialSendByte(data);
+		SerialSendByte('\r');
+		SerialSendByte('\n');
+
+	}
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart){
+
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+	xQueueSendFromISR(xQueue, &c, &xHigherPriorityTaskWoken);
+	HAL_UART_Receive_IT(&huart1, &c, 1);
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
 void SerialSendByte(char data){
-	BaseType_t status = xSemaphoreTake(xSemaphore, -1);
+	BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
 	HAL_UART_Transmit_IT(&huart1, &data, 1);
 
 }

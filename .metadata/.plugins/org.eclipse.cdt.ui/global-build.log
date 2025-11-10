@@ -16971,3 +16971,995 @@ Finished building: default.size.stdout
  
 Finished building: Practica 4.list
  
+16:07:58 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'CreateSerialTask':
+../Core/Src/semaforos.c:24:51: warning: passing argument 3 of 'xTaskCreate' makes integer from pointer without a cast [-Wint-conversion]
+   24 |         xTaskCreate(SerialTaskTx, "SerialTaskTx", NULL, 128, 1, NULL);
+      |                                                   ^~~~
+      |                                                   |
+      |                                                   void *
+In file included from ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:40,
+                 from ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:35,
+                 from ../Core/Inc/main.h:232,
+                 from ../Core/Src/semaforos.c:8:
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:332:86: note: expected 'uint16_t' {aka 'const short unsigned int'} but argument is of type 'void *'
+  332 |                                                         const configSTACK_DEPTH_TYPE usStackDepth,
+      |                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+../Core/Src/semaforos.c:24:57: warning: passing argument 4 of 'xTaskCreate' makes pointer from integer without a cast [-Wint-conversion]
+   24 |         xTaskCreate(SerialTaskTx, "SerialTaskTx", NULL, 128, 1, NULL);
+      |                                                         ^~~
+      |                                                         |
+      |                                                         int
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:333:70: note: expected 'void * const' but argument is of type 'int'
+  333 |                                                         void * const pvParameters,
+      |                                                         ~~~~~~~~~~~~~^~~~~~~~~~~~
+../Core/Src/semaforos.c: In function 'SerialTaskTx':
+../Core/Src/semaforos.c:30:32: warning: passing argument 1 of 'SerialSendByte' makes integer from pointer without a cast [-Wint-conversion]
+   30 |                 SerialSendByte("h");
+      |                                ^~~
+      |                                |
+      |                                char *
+../Core/Inc/main.h:38:26: note: expected 'char' but argument is of type 'char *'
+   38 | void SerialSendByte(char data);
+      |                     ~~~~~^~~~
+../Core/Src/semaforos.c:32:32: warning: passing argument 1 of 'SerialSendByte' makes integer from pointer without a cast [-Wint-conversion]
+   32 |                 SerialSendByte("o");
+      |                                ^~~
+      |                                |
+      |                                char *
+../Core/Inc/main.h:38:26: note: expected 'char' but argument is of type 'char *'
+   38 | void SerialSendByte(char data);
+      |                     ~~~~~^~~~
+../Core/Src/semaforos.c:36:32: warning: passing argument 1 of 'SerialSendByte' makes integer from pointer without a cast [-Wint-conversion]
+   36 |                 SerialSendByte("a");
+      |                                ^~~
+      |                                |
+      |                                char *
+../Core/Inc/main.h:38:26: note: expected 'char' but argument is of type 'char *'
+   38 | void SerialSendByte(char data);
+      |                     ~~~~~^~~~
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:43:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   43 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:47:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   47 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:47:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   47 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:47:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:55:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   55 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:61:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   61 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:60:20: warning: unused variable 'status' [-Wunused-variable]
+   60 |         BaseType_t status = xSemaphoreTake(xSemaphore, -1);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  36792	     96	  37408	  74296	  12238	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:10:48 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'CreateSerialTask':
+../Core/Src/semaforos.c:24:51: warning: passing argument 3 of 'xTaskCreate' makes integer from pointer without a cast [-Wint-conversion]
+   24 |         xTaskCreate(SerialTaskTx, "SerialTaskTx", NULL, 128, 1, NULL);
+      |                                                   ^~~~
+      |                                                   |
+      |                                                   void *
+In file included from ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:40,
+                 from ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:35,
+                 from ../Core/Inc/main.h:232,
+                 from ../Core/Src/semaforos.c:8:
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:332:86: note: expected 'uint16_t' {aka 'const short unsigned int'} but argument is of type 'void *'
+  332 |                                                         const configSTACK_DEPTH_TYPE usStackDepth,
+      |                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+../Core/Src/semaforos.c:24:57: warning: passing argument 4 of 'xTaskCreate' makes pointer from integer without a cast [-Wint-conversion]
+   24 |         xTaskCreate(SerialTaskTx, "SerialTaskTx", NULL, 128, 1, NULL);
+      |                                                         ^~~
+      |                                                         |
+      |                                                         int
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:333:70: note: expected 'void * const' but argument is of type 'int'
+  333 |                                                         void * const pvParameters,
+      |                                                         ~~~~~~~~~~~~~^~~~~~~~~~~~
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:43:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   43 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:47:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   47 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:47:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   47 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:47:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:55:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   55 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:61:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   61 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:60:20: warning: unused variable 'status' [-Wunused-variable]
+   60 |         BaseType_t status = xSemaphoreTake(xSemaphore, -1);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  36748	     96	  37408	  74252	  1220c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:14:52 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:43:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   43 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:47:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   47 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:47:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   47 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:47:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:55:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   55 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:61:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   61 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:60:20: warning: unused variable 'status' [-Wunused-variable]
+   60 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  36748	     96	  37408	  74252	  1220c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:14:56 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36748	     96	  37408	  74252	  1220c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:16:55 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36748	     96	  37408	  74252	  1220c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:19:29 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36748	     96	  37408	  74252	  1220c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:20:08 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36748	     96	  37408	  74252	  1220c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:21:17 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  36316	     96	  37400	  73812	  12054	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:26:38 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'CreateSerialTask':
+../Core/Src/semaforos.c:25:21: error: 'SerialTaskRx' undeclared (first use in this function); did you mean 'SerialTaskTx'?
+   25 |         xTaskCreate(SerialTaskRx, "SerialTaskRx", 128,NULL , 1, NULL);
+      |                     ^~~~~~~~~~~~
+      |                     SerialTaskTx
+../Core/Src/semaforos.c:25:21: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:44:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   44 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:48:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:48:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:48:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:56:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   56 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:62:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   62 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:61:20: warning: unused variable 'status' [-Wunused-variable]
+   61 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+make: *** [Core/Src/subdir.mk:43: Core/Src/semaforos.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+16:27:33 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/freertos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/freertos.d" -MT"Core/Src/freertos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/freertos.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:44:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   44 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:48:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:48:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:48:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:56:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   56 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:62:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   62 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:61:20: warning: unused variable 'status' [-Wunused-variable]
+   61 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  40276	    108	  37428	  77812	  12ff4	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:28:52 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:44:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   44 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:48:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:48:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:48:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:56:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   56 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:62:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   62 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:61:20: warning: unused variable 'status' [-Wunused-variable]
+   61 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  42212	    108	  37428	  79748	  13784	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:29:07 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42212	    108	  37428	  79748	  13784	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:30:07 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42212	    108	  37428	  79748	  13784	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:33:28 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42212	    108	  37428	  79748	  13784	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:36:16 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:44:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   44 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:48:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:48:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:48:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:56:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   56 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:62:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   62 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:61:20: warning: unused variable 'status' [-Wunused-variable]
+   61 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  36316	     96	  37400	  73812	  12054	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:37:09 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36316	     96	  37400	  73812	  12054	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:37:31 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36316	     96	  37400	  73812	  12054	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:38:03 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:44:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   44 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:48:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:48:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   48 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:48:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:56:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   56 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:62:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   62 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:61:20: warning: unused variable 'status' [-Wunused-variable]
+   61 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  42212	    108	  37428	  79748	  13784	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:40:23 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42212	    108	  37428	  79748	  13784	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:44:01 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:40:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   40 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:44:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   44 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:44:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   44 |                 printf("Mensaje recibido de la cola %c\r|n",c);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:44:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:52:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   52 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:58:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   58 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:57:20: warning: unused variable 'status' [-Wunused-variable]
+   57 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  42084	    108	  37428	  79620	  13704	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:49:27 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:41:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   41 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:46:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   46 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:46:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   46 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:46:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:54:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   54 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:60:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   60 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:59:20: warning: unused variable 'status' [-Wunused-variable]
+   59 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  42100	    108	  37428	  79636	  13714	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:50:00 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42100	    108	  37428	  79636	  13714	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:50:52 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:42:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   42 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:47:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   47 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:47:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   47 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:47:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:55:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   55 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:61:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   61 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:60:20: warning: unused variable 'status' [-Wunused-variable]
+   60 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  42228	    108	  37428	  79764	  13794	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:52:01 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42228	    108	  37428	  79764	  13794	Practica 4.elf
+Finished building: default.size.stdout
+ 
+16:56:20 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:48:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   48 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:53:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   53 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:53:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   53 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:53:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:61:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   61 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:67:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   67 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:66:20: warning: unused variable 'status' [-Wunused-variable]
+   66 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  41924	    108	  37428	  79460	  13664	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+16:56:39 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-size  Practica\ 4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41924	    108	  37428	  79460	  13664	Practica 4.elf
+Finished building: default.size.stdout
+ 
+17:05:20 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskTx':
+../Core/Src/semaforos.c:44:17: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   44 |                 printf("HOLA");
+      |                 ^~~~~~
+../Core/Src/semaforos.c:9:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    8 | #include "main.h"
+  +++ |+#include <stdio.h>
+    9 | 
+../Core/Src/semaforos.c:44:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   44 |                 printf("HOLA");
+      |                 ^~~~~~
+../Core/Src/semaforos.c:44:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:51:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   51 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:56:17: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   56 |                 printf("Mensaje recibido de la cola %d\r|n",data);
+      |                 ^~~~~~
+../Core/Src/semaforos.c:56:17: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:64:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   64 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:70:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   70 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:69:20: warning: unused variable 'status' [-Wunused-variable]
+   69 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  41932	    108	  37428	  79468	  1366c	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 
+17:07:10 **** Incremental Build of configuration Debug for project Practica 4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
+../Core/Src/semaforos.c: In function 'SerialTaskRx':
+../Core/Src/semaforos.c:53:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   53 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
+                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/semaforos.c:8:
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/semaforos.c:72:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+   72 |         HAL_UART_Receive_IT(&huart1, &c, 1);
+      |                                      ^~
+      |                                      |
+      |                                      char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+ 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/semaforos.c: In function 'SerialSendByte':
+../Core/Src/semaforos.c:78:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
+   78 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
+      |                                       ^~~~~
+      |                                       |
+      |                                       char *
+../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
+      |                                                                   ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/semaforos.c:77:20: warning: unused variable 'status' [-Wunused-variable]
+   77 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
+      |                    ^~~~~~
+arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Practica 4.elf
+ 
+arm-none-eabi-size  Practica\ 4.elf 
+arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
+   text	   data	    bss	    dec	    hex	filename
+  37944	     96	  37408	  75448	  126b8	Practica 4.elf
+Finished building: default.size.stdout
+ 
+Finished building: Practica 4.list
+ 

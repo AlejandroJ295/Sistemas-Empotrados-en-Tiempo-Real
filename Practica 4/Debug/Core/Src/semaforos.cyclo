@@ -1,5 +1,8 @@
-../Core/Src/semaforos.c:13:6:CreateSerialObjects	1
-../Core/Src/semaforos.c:21:6:CreateSerialTask	1
-../Core/Src/semaforos.c:26:6:SerialTaskTx	1
-../Core/Src/semaforos.c:40:6:SerialSendByte	1
-../Core/Src/semaforos.c:46:6:HAL_UART_TxCpltCallback	1
+../Core/Src/semaforos.c:14:5:__io_putchar	1
+../Core/Src/semaforos.c:20:6:CreateSerialObjects	1
+../Core/Src/semaforos.c:29:6:CreateSerialTask	1
+../Core/Src/semaforos.c:35:6:SerialTaskTx	1
+../Core/Src/semaforos.c:52:6:SerialTaskRx	1
+../Core/Src/semaforos.c:68:6:HAL_UART_RxCpltCallback	2
+../Core/Src/semaforos.c:76:6:SerialSendByte	1
+../Core/Src/semaforos.c:82:6:HAL_UART_TxCpltCallback	1

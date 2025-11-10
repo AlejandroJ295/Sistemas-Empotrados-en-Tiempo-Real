@@ -33,6 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "FreeRTOS.h"
 void SerialTaskTx(void* pArgs);
+void SerialTaskRx(void* pArgs);
 void CreateSerialTask();
 void CreateSerialObjects();
 void SerialSendByte(char data);

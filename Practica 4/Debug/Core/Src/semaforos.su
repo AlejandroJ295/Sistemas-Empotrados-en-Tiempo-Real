@@ -1,5 +1,8 @@
-../Core/Src/semaforos.c:13:6:CreateSerialObjects	8	static
-../Core/Src/semaforos.c:21:6:CreateSerialTask	16	static
-../Core/Src/semaforos.c:26:6:SerialTaskTx	16	static
-../Core/Src/semaforos.c:40:6:SerialSendByte	24	static
-../Core/Src/semaforos.c:46:6:HAL_UART_TxCpltCallback	16	static
+../Core/Src/semaforos.c:14:5:__io_putchar	16	static
+../Core/Src/semaforos.c:20:6:CreateSerialObjects	8	static
+../Core/Src/semaforos.c:29:6:CreateSerialTask	16	static
+../Core/Src/semaforos.c:35:6:SerialTaskTx	16	static
+../Core/Src/semaforos.c:52:6:SerialTaskRx	24	static
+../Core/Src/semaforos.c:68:6:HAL_UART_RxCpltCallback	24	static,ignoring_inline_asm
+../Core/Src/semaforos.c:76:6:SerialSendByte	24	static
+../Core/Src/semaforos.c:82:6:HAL_UART_TxCpltCallback	16	static
