@@ -1,8 +1,1 @@
-2025-11-10 15:37:34,201 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
-2025-11-10 15:37:34,203 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
-2025-11-10 15:37:34,204 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
-2025-11-10 15:37:34,204 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
-2025-11-10 15:37:34,205 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
-2025-11-10 17:49:39,195 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
-2025-11-10 17:49:39,196 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
-2025-11-10 17:49:39,196 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2025-11-18 10:00:43,373 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 

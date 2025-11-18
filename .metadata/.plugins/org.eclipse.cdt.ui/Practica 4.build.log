@@ -1,51 +1,10 @@
-17:07:10 **** Incremental Build of configuration Debug for project Practica 4 ****
+16:22:04 **** Incremental Build of configuration Debug for project Practica 4 ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/semaforos.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L475xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/semaforos.d" -MT"Core/Src/semaforos.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/semaforos.o"
-../Core/Src/semaforos.c: In function 'SerialTaskRx':
-../Core/Src/semaforos.c:53:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
-   53 |         HAL_UART_Receive_IT(&huart1, &c, 1);
-      |                                      ^~
-      |                                      |
-      |                                      char *
-In file included from ../Core/Inc/stm32l4xx_hal_conf.h:450,
-                 from ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/semaforos.c:8:
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
-      |                                                                  ~~~~~~~~~^~~~~
-../Core/Src/semaforos.c: In function 'HAL_UART_RxCpltCallback':
-../Core/Src/semaforos.c:72:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
-   72 |         HAL_UART_Receive_IT(&huart1, &c, 1);
-      |                                      ^~
-      |                                      |
-      |                                      char *
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1699:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
- 1699 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
-      |                                                                  ~~~~~~~~~^~~~~
-../Core/Src/semaforos.c: In function 'SerialSendByte':
-../Core/Src/semaforos.c:78:39: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit_IT' differ in signedness [-Wpointer-sign]
-   78 |         HAL_UART_Transmit_IT(&huart1, &data, 1);
-      |                                       ^~~~~
-      |                                       |
-      |                                       char *
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:1698:82: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
- 1698 | HAL_StatusTypeDef HAL_UART_Transmit_IT(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size);
-      |                                                                   ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/semaforos.c:77:20: warning: unused variable 'status' [-Wunused-variable]
-   77 |         BaseType_t status = xSemaphoreTake(xSemaphore, portMAX_DELAY);
-      |                    ^~~~~~
-arm-none-eabi-gcc -o "Practica 4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/pinkyflowy/Escritorio/Sistemas-Empotrados-en-Tiempo-Real/Practica 4/STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica 4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Practica 4.elf
- 
 arm-none-eabi-size  Practica\ 4.elf 
-arm-none-eabi-objdump -h -S Practica\ 4.elf  > "Practica 4.list"
    text	   data	    bss	    dec	    hex	filename
   37944	     96	  37408	  75448	  126b8	Practica 4.elf
 Finished building: default.size.stdout
  
-Finished building: Practica 4.list
- 
 
-17:07:11 Build Finished. 0 errors, 4 warnings. (took 912ms)
+16:22:04 Build Finished. 0 errors, 0 warnings. (took 194ms)
 
