@@ -1,0 +1,3 @@
+../Core/Src/Sensores.c:35:6:InitSensores	1
+../Core/Src/Sensores.c:46:6:ReadSensores	1
+../Core/Src/Sensores.c:58:6:TareaSensores	1
